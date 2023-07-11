@@ -1,0 +1,15 @@
+<div class="nav-item">
+  <%= link_to "TOPページ", admin_root_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "備品一覧", admin_equipments_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "会員一覧", admin_users_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-lg btn-outline-dark" %>
+</div>

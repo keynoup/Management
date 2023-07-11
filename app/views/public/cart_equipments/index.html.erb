@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <h4>備品カート</h4>
+  </div>
+  <div class="row col-8 justify-content-end offset-2 mt-5">
+      <%= link_to "カートを空にする", all_destroy_cart_equipments_path, method: :delete, class: "btn btn-danger" %>
+  </div>
+    
+  <div class="row justify-content-center">
+    <div class="col-8 mt-2">
+      <table class="table table-borderless">
+        <thead>
+            <tr>
+              <th>備品名</th>
+              <th class="text-center">管理番号</th>
+              <th class="text-center">備品ステータス</th>
+              <th colspan="1"></th>
+            </tr>
+        </thead>
+        <% @cart_equipments.each do |cart_equipment| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= image_tag cart_equipment.equipment.image, size: "100x80" %>
+              <%= "　　" %>
+              <%= cart_equipment.equipment.equipment_name %>
+            </td>
+            <td class="align-middle text-center"><%= cart_equipment.equipment.management_number %></td>
+            <td class="align-middle text-center"><%= cart_equipment.equipment.equipment_status_i18n %></td>
+            <td class="align-middle text-center"><%= link_to "削除する", cart_equipment_path(cart_equipment), method: :delete, class: "btn btn-danger btn-sm" %></td>
+          </tr>
+        </tbody>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-3 offset-2">
+      <%= link_to "備品選択を続ける", root_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-3 offset-3">
+     <% unless @cart_equipments.blank? %>
+      <%= link_to "入力申請に進む", new_user_application_path, class: "btn btn-success" %>
+     <% end %>
+    </div>
+  </div>
+</div>

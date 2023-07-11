@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <h4>返却情報入力</h4>
+  </div>
+
+  <div class="row mt-3 offset-1">
+    <div class="col-8 mx-auto">
+        <%= form_with model: @detail ,url: user_application_detail_path(@detail),method: :patch do |f| %>
+
+          <div class="form-group">
+            <%= f.label :"備品名", class: "col-md-3 col-form-label" %>
+            <%= @equipment&.equipment_name %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :"管理番号", class: "col-md-3 col-form-label" %>
+            <%= @equipment&.management_number %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :"返却時画像", class: "col-md-3 col-form-label" %>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :"管理担当者", class: "col-md-3 col-form-label" %>
+            <%= f.text_field :administrator %>
+          </div>
+
+          <div class="form-group d-flex mt-4">
+            <%= f.label :"備考", class: "col-md-3 col-form-label" %>
+            <%= f.text_area :return_remarks, rows: '5', class: "col-md-4 form-control" %>
+          </div>
+
+          <div class="form-group ml-3">
+            <%= f.submit "返却確定", class: "btn-warning mx-auto" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

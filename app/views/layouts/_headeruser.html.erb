@@ -1,0 +1,15 @@
+<div class="nav-item">
+  <%= link_to "TOPページ", root_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "マイページ", user_path(current_user), class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "使用一覧", use_list_user_applications_path, class: "btn btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "カート", cart_equipments_path, class: "btn  btn-lg btn-outline-dark" %>
+</div>
+<div class="nav-item">
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-lg btn-outline-dark" %>
+</div>

@@ -6,11 +6,22 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    
+    <!--画像クリック時にポップアップ表示-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+      <main>
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

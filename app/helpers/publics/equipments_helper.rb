@@ -1,0 +1,2 @@
+module Publics::EquipmentsHelper
+end

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h4>申請履歴一覧</h4>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <table class="col-7 table table-bordered">
+      <thead>
+        <tr>
+          <th>申請日</th>
+          <th>使用目的</th>
+          <th class="text-center">ステータス</th>
+          <th class="text-center">申請詳細</th>
+        </tr>
+      </thead>
+      <% @user_applications.each do |user_application| %>
+      <tbody>
+        <tr>
+          <td><%= user_application.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= user_application.objective %></td>
+          <td class="text-center"><%= user_application.application_status_i18n %></td>
+          <td class="text-center"><%= link_to "表示する", user_application_path(user_application.id), class: "btn-success btn-sm mx-auto" %></td>
+      </tbody>
+      <% end %>
+      <%= paginate @user_applications %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="row d-flex align-items-end m-3 justify-content-between">
+  <div class="col-4">
+  <% if user_signed_in? %>
+    <h5>ログイン：<%= current_user.last_name %><%= current_user.first_name %></h5>
+  <% end %>
+  </div>
+  <div class="d-flex">
+    <% if admin_signed_in? %>
+      <%= render 'layouts/headeradmin' %>
+    <% elsif user_signed_in? %>
+      <%= render 'layouts/headeruser' %>
+    <% else %>
+      <%= render 'layouts/headersignin' %>
+    <% end %>
+    </div>
+</div>
+<hr class="my-4" color="#999999">

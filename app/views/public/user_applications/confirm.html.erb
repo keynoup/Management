@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row ">
+     <h4>申請情報確認</h4>
+  </div>
+  
+  <div class="row justify-content-center">
+    <table class="table table-bordered" style="width: 500px;justify-content-cente">
+      <tr>
+        <th>目的</th>
+        <td><%= @user_application.objective %></td>
+      </tr>
+      <tr>
+        <th>借用期間</th>
+        <td><%= "#{@user_application.start_date} 〜 #{@user_application.end_date}" %></td>
+      </tr>
+      <tr>
+        <th>使用場所</th>
+        <td><%= @user_application.location %></td>
+      </tr>
+      <tr>
+        <th>返却予定日</th>
+        <td><%= @user_application.return_date %></td>
+      </tr>
+      <tr>
+        <th>備考</th>
+        <td><%= @user_application.application_remarks %></td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4 text-center">
+    <div class="col-md-8">
+      <table class="table table-bordered " style="width: 500px; margin: 0 auto">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>管理番号</th>
+            <th>備品ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cart_equipments.each do |f| %>
+          <tr>
+            <td><%= f.equipment.equipment_name %></td>
+            <td><%= f.equipment.management_number %></td>
+            <td><%= f.equipment.equipment_status_i18n %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-4  justify-content-center">
+    <div class="col-4 text-center">
+      <%= form_with(model: @user_application, url: user_applications_path, method: :post) do |f| %>
+        <%= f.hidden_field :user_id, value: @user_application.user_id %>
+        <%= f.hidden_field :objective, value: @user_application.objective %>
+        <%= f.hidden_field :start_date, value: @user_application.start_date %>
+        <%= f.hidden_field :end_date, value: @user_application.end_date %>
+        <%= f.hidden_field :return_date, value: @user_application.return_date %>
+        <%= f.hidden_field :location, value: @user_application.location %>
+        <%= f.hidden_field :application_status, value: @user_application.application_status %>
+        <%= f.hidden_field :application_remarks, value: @user_application.application_remarks %>
+        <%= f.submit '申請を確定する', class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

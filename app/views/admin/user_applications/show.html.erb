@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="row">
+    <h4>申請履歴詳細</h4>
+  </div>
+  <div class="row">
+
+    <div class="col-6">
+      <% if @details.any? { |detail| detail.image.present? } %>
+        <div class="d-flex justify-content-center align-items-center" style="height:372px;">
+          <div id="imageContainer"></div>
+        </div>
+
+
+      <% else %>
+        <div style="height: 200px;"></div>
+      <% end %>
+    </div>
+
+    <div class="col-5 mt-5">
+      <table class="table table-bordered">
+          <tr>
+              <th>申請者</th>
+              <td class="text-center"><%= @user_application.user.last_name + " " + @user_application.user.first_name %></td>
+           </tr>
+          <tr>
+              <th>目的</th>
+              <td class="text-center"><%= @user_application.objective %></td>
+           </tr>
+          <tr>
+              <th>使用期間</th>
+              <td class="text-center"><%= "#{@user_application.start_date} 〜 #{@user_application.end_date}" %></td>
+           </tr>
+          <tr>
+              <th>返却予定日</th>
+              <td class="text-center"><%= @user_application.return_date %></td>
+           </tr>
+          <tr>
+            <th>返却日</th>
+            <td class="text-center">
+              <% if @details.present? && @user_application.user_application_details.last.updated_at.present? %>
+                <%= @details.last.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d') %>
+              <% else %>
+                未返却
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>申請ステータス</th>
+            <td class="d-flex justify-content-center">
+              <%= form_with(model: [:admin, @user_application], local: true) do |f| %>
+                <%= f.select :application_status, UserApplication.application_statuses.keys.map {|k| [I18n.t("enums.user_application.application_status.#{k}"), k]} %>
+                <%= f.submit "更新",class:"btn btn-success btn-sm mb-1" %>
+              <% end %>
+            </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-4 justify-content-center">
+    <div class="col-3">
+      <table class="table table-borderless">
+        <thead>
+          <th>備品名</th>
+          <th class="text-center">管理番号</th>
+        </thead>
+        <tbody>
+          <% @equipments.each do |equipment| %>
+            <tr>
+              <td><%= equipment.equipment_name %></td>
+              <td class="text-center"><%= equipment.management_number %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-5">
+      <table class="table table-borderless">
+        <thead>
+          <th class="text-center col-4">管理担当者</th>
+          <th class="text-center col-4">返却時画像</th>
+          <th class="col-4">備考</th>
+        </thead>
+        <tbody>
+          <% @details.each do |detail| %>
+            <tr>
+              <td class="text-center">
+                <% if detail.administrator.present? %>
+                  <%= detail.administrator %>
+                <% else %>
+                  <div class="text-danger">未記入</div>
+                <% end %>
+              </td>
+
+              <td class="d-flex justify-content-center align-start">
+                <% if detail.image.present? %>
+                  <div>
+                    <button class="btn btn-primary btn-sm show-image-button" data-image="<%= rails_blob_path(detail.image) %>">画像表示</button>
+                  </div>
+                <% else %>
+                  <div class="text-danger">画像無し</div>
+                <% end %>
+              </td>
+
+              <td>
+                <% if detail.return_remarks.present? %>
+                  <%= detail.return_remarks %>
+              　<% else %>
+                  <div>備考無し</div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-3">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>備品ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @equipments.each do |equipment| %>
+            <tr>
+              <td>
+                <%= form_with model: [:admin, equipment], local: true do |f| %>
+                  <!--equipment.controllerにuser_application_idを渡す-->
+                  <%= hidden_field_tag :user_application_id, @user_application.id %>
+                  <%= f.select :equipment_status, Equipment.equipment_statuses.keys.map {|k| [I18n.t("enums.equipment.equipment_status.#{k}"), k]} %>
+                  <%= f.submit "更新",class:"btn btn-success btn-sm mb-1" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'user_applications_show', 'data-turbolinks-track': 'reload' %>
+<%= stylesheet_pack_tag 'user_applications_show', media: 'all', 'data-turbolinks-track': 'reload' %>

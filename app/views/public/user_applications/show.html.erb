@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="row d-flex justify-content-between">
+    <h4>申請履歴詳細</h4>
+    <%= link_to "一覧へ戻る", user_applications_path, class: "btn btn-primary mr-4" %>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-6">
+      <div class="mb-3 ml-1">
+        <h5>申請情報</h5>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <th>申請日</td>
+          <td><%= @user_application.created_at.in_time_zone('Tokyo').strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+        <tr>
+          <th>目的</td>
+          <td><%= @user_application.objective %></td>
+        </tr>
+        <tr>
+          <th>借用期間</td>
+          <td><%= "#{@user_application.start_date} 〜 #{@user_application.end_date}" %></td>
+        </tr>
+        <tr>
+          <th>使用場所</td>
+          <td><%= @user_application.location %></td>
+        </tr>
+        <tr>
+          <th>返却予定日</td>
+          <td><%= @user_application.return_date %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-4 offset-1">
+      <div class="row">
+        <div class="ml-1">
+          <h5>返却情報</h5>
+        </div>
+        <table class="table table-bordered">
+          <tr>
+            <th>返却日</td>
+            <td>
+              <% if !@details.any? %>
+                <div class="text-center">no-details</div>
+                <!--全ての備品のステータスが使用中以外のとき返却日を表示する-->
+              <% elsif @equipments.all? { |equipment| equipment.equipment_status != 'during_use' } %>
+                <%= @details.last.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d') %> %>
+
+              <% else %>
+                <div class="text-center">未返却</div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>申請ステータス</td>
+            <td class="text-center"><%= @user_application.application_status_i18n %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="ml-1">
+          <h5>備考</h5>
+        </div>
+        <% unless @user_application.application_remarks.blank? %>
+          <table class="table table-bordered">
+            <tr>
+              <td><%= @user_application.application_remarks %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-6">
+      <div class="mb-3 ml-1">
+        <h5>備品</h5>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>備品名</th>
+            <th class="text-center">管理番号</th>
+            <th class="text-center">ジャンル名</th>
+            <th class="text-center">返却画面へ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @equipments.present? %>
+            <% @equipments.each do |equipment| %>
+              <tr>
+                <td><%= equipment.equipment_name %></td>
+                <td class="text-center"><%= equipment.management_number %></td>
+                <td class="text-center"><%= equipment.genre.equipment_genre %></td>
+                <td class="text-center"> <%= link_to "返却する", edit_user_application_detail_path(user_application: @user_application, equipment: equipment),
+                class: "btn btn-warning bn-sm" %>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="4">情報がありません</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

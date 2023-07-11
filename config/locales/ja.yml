@@ -1,0 +1,16 @@
+ja:
+  enums:
+    equipment:
+      equipment_status: # 備品ステータス
+        available: '使用可能'
+        during_use: '使用中'
+        unavailable: '使用不可'
+        in_failure: '故障中'
+        under_maintenance: 'メンテナンス中'
+        
+    user_application:
+      application_status: # 申請ステータス
+        applying: '申請中'
+        during_use: '使用中'
+        return_pending: '返却確認待ち'
+        returned: '返却確認済み'

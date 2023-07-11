@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <h4>マイページ</h4>
+  </div>
+
+  <div class="row d-flex mt-5 offset-3">
+    <font size="5" class="d-flex align-items-center ml-3 ">登録情報</font>
+    <%= link_to "編集する", edit_user_path,class: "btn btn-success ml-4" %>
+  </div>
+
+  <div class="row mt-4 justify-content-center">
+    <div class="col-6">
+      <table class="table table-bordered">
+        <tr>
+        <th>氏名</th>
+          <td><%= current_user.last_name + "　" + current_user.first_name %></td>
+        </tr>
+        <tr>
+        <th>カナ</th>
+          <td><%= current_user.last_name_kana + "　" + current_user.first_name_kana %></td>
+        </tr>
+        <tr>
+        <th>所属</th>
+          <td><%= current_user.affiliation %></td>
+        </tr>
+       <th>社員番号</th>
+          <td><%= current_user.employee_number %></td>
+        </tr>
+          <th>電話番号</th>
+          <td><%= current_user.phone_number %></td>
+        </tr>
+          <th>メールアドレス</th>
+          <td><%= current_user.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-3 offset-3 d-flex">
+      <div class="d-flex align-items-center">申請履歴一覧</div>
+    <%= link_to "一覧を見る", user_applications_path,class: "btn btn-sm btn-primary ml-4" %>
+    </div>
+    <div class="col-3 d-flex ml-3">
+      <div class="d-flex align-items-center">使用一覧</div>
+    <%= link_to "一覧を見る", use_list_user_applications_path,class: "btn btn-sm btn-primary ml-4" %>
+    </div>
+  </div>
+</div>

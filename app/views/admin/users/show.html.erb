@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <h4><%= @user.last_name %><%= @user.first_name %>さんの会員詳細</h4>
+  </div>
+  <div class="row d-flex align-items-center text-center mt-3 offset-1">
+    <h5>登録情報</h5>
+    <%= link_to "編集する", edit_admin_user_path(params[:id]),class:"btn btn-success ml-4 mb-2" %>
+  </div>
+  <div class="row mt-4 offset-1">
+    <table class="table table-bordered" style="width: 500px;">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @user.id %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @user.last_name %> <%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <th>フリガナ</th>
+        <td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+      </tr>
+      <tr>
+        <th>所属</th>
+        <td><%= @user.affiliation %></td>
+      </tr>
+      <tr>
+        <th>社員番号</th>
+        <td><%= @user.employee_number %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @user.phone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <% if @user.is_deleted == true %>
+          <td class= text-secondary>無効</td>
+        <% else %>
+          <td class= text-success>有効</td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>

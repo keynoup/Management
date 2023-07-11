@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <h4>備品詳細</h4>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="col-md-2">
+      <%= render 'admin/genres/genresearch',genres: @genres %>
+    </div>
+
+    <div class="col-md-4 offset-1">
+      <div class="d-flex flex-column align-items-center pt-5">
+        <%= image_tag @equipment.image, size: "300x200" %>
+        <div class="mt-3">
+          <p class="text-center">管理担当者: <%= @equipment.administrator %></p>
+        </div>
+        <% unless @equipment.equipment_status == "available" %>
+          <div class="mt-3">
+            <p class="text-center text-danger">カートに入れることはできません</p>
+          </div>
+        <% else %>
+          <div class="mt-3">
+            <%= link_to 'カートに入れる', cart_equipments_path(equipment_id: @equipment.id), method: :post, class: 'btn btn-success' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4 offset-1 ">
+      <div class="row">
+        <table class="table table-bordered">
+          <tr><th>備品名</td><td><%= @equipment.equipment_name %></td></tr></br>
+          <tr><th>管理番号</td><td><%= @equipment.management_number %></td></tr>
+          <tr><th>ジャンル</td><td><%= @equipment.genre.equipment_genre %></td></tr>
+          <tr><th>備品ステータス</td><td><%= @equipment.equipment_status_i18n %></td></tr>
+        </table>
+      </div>
+      <div class="row mt-3">
+        <div class="mb-2 ml-1">
+          <h5>備考</h5>
+        </div>
+         <% unless @equipment.equipment_remarks.blank? %>
+          <table class="table table-bordered">
+            <tr>
+              <td><%= @equipment.equipment_remarks %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

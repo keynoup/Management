@@ -12,9 +12,9 @@ class Admin::UserApplicationsController < ApplicationController
 
   def show
     @user_application = UserApplication.find(params[:id])
-    @equipments = @user_application.equipments
-    @details = @user_application.user_application_details
-
+    # @equipments = @user_application.equipments
+    # @details = @user_application.user_application_details
+    @details = @user_application.user_application_details.includes(:equipment).with_attached_image
   end
 
   def update

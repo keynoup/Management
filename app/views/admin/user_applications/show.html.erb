@@ -9,8 +9,6 @@
         <div class="d-flex justify-content-center align-items-center" style="height:372px;">
           <div id="imageContainer"></div>
         </div>
-
-
       <% else %>
         <div style="height: 200px;"></div>
       <% end %>
@@ -58,33 +56,25 @@
   </div>
 
   <div class="row mt-4 justify-content-center">
-    <div class="col-3">
       <table class="table table-borderless">
         <thead>
           <th>備品名</th>
           <th class="text-center">管理番号</th>
-        </thead>
-        <tbody>
-          <% @equipments.each do |equipment| %>
-            <tr>
-              <td><%= equipment.equipment_name %></td>
-              <td class="text-center"><%= equipment.management_number %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="col-5">
-      <table class="table table-borderless">
-        <thead>
-          <th class="text-center col-4">管理担当者</th>
-          <th class="text-center col-4">返却時画像</th>
-          <th class="col-4">備考</th>
+          <th class="text-center">管理担当者</th>
+          <th class="text-center">返却時画像</th>
+          <th>備考</th>
+
+          <th>備品ステータス</th>
+
         </thead>
         <tbody>
           <% @details.each do |detail| %>
+            <% equipment = detail.equipment %>
             <tr>
+              <td><%= equipment.equipment_name %></td>
+              <td class="text-center"><%= equipment.management_number %></td>
+
               <td class="text-center">
                 <% if detail.administrator.present? %>
                   <%= detail.administrator %>
@@ -110,22 +100,7 @@
                   <div>備考無し</div>
                 <% end %>
               </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="col-3">
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th>備品ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @equipments.each do |equipment| %>
-            <tr>
               <td>
                 <%= form_with model: [:admin, equipment], local: true do |f| %>
                   <!--equipment.controllerにuser_application_idを渡す-->
@@ -138,7 +113,6 @@
           <% end %>
         </tbody>
       </table>
-    </div>
   </div>
 </div>
 

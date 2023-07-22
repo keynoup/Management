@@ -35,7 +35,7 @@
 
     <div class="col-4 offset-1">
       <div class="row">
-        <div class="ml-1">
+        <div class="mb-3 ml-1">
           <h5>返却情報</h5>
         </div>
         <table class="table table-bordered">
@@ -46,7 +46,9 @@
                 <div class="text-center">no-details</div>
                 <!--全ての備品のステータスが使用中以外のとき返却日を表示する-->
               <% elsif @equipments.all? { |equipment| equipment.equipment_status != 'during_use' } %>
-                <%= @details.last.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d') %> %>
+              <div class="text-center">
+                <%= @details.last.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d') %>
+              </div>
 
               <% else %>
                 <div class="text-center">未返却</div>
@@ -93,9 +95,9 @@
           <% if @equipments.present? %>
             <% @equipments.each do |equipment| %>
               <tr>
-                <td><%= equipment.equipment_name %></td>
-                <td class="text-center"><%= equipment.management_number %></td>
-                <td class="text-center"><%= equipment.genre.equipment_genre %></td>
+                <td style="vertical-align:middle;"><%= equipment.equipment_name %></td>
+                <td class="text-center" style="vertical-align:middle;"><%= equipment.management_number %></td>
+                <td class="text-center" style="vertical-align:middle;"><%= equipment.genre.equipment_genre %></td>
                 <td class="text-center"> <%= link_to "返却する", edit_user_application_detail_path(user_application: @user_application, equipment: equipment),
                 class: "btn btn-warning bn-sm" %>
               </tr>

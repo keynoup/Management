@@ -28,7 +28,7 @@
         <% @equipments.each do |equipment| %>
           <div class='col-4'>
             <%= link_to equipment_path(equipment.id) do %>
-              <%= image_tag equipment.image, size: "200x160" %>
+              <%= image_tag equipment.image, class: "index-img" %>
             <% end %>
             <p><%= equipment.equipment_name %></p>
             <p><%= equipment.equipment_status_i18n %></p>

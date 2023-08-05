@@ -76,7 +76,8 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %>文字以上)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "off", size: "40x10", class: "password" %>
+                <%= f.text_field :password, autocomplete: "off", size: "40x10", class: "password" %>
+                <!--password_field→text_field変更-->
               </div>
             </td>
         </tr>
@@ -85,7 +86,7 @@
           <td>
             <div class="field">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off", size: "40x10", class: "password_confirm" %>
+            <%= f.text_field :password_confirmation, autocomplete: "off", size: "40x10", class: "password_confirm" %>
             </div>
           </td>
         </tr>

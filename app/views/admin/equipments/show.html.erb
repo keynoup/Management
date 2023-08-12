@@ -5,7 +5,11 @@
 
   <div class="row offset-2 mt-5">
     <div class="col-md-4">
-      <%= image_tag @equipment.image, size: "300x200" %>
+      <% if @equipment.image.attached? %>
+        <%= image_tag @equipment.image, class: "show-img" %>
+      <% else %>
+        <%= image_tag 'no_image', class: "show-img" %>
+      <% end %>
       <div class="d-flex justify-content-center mt-5">
         <p class="mr-2">管理担当者 :</p>
         <div class="ml-3">
@@ -25,11 +29,11 @@
   </div>
 
   <div class="row pt-2 pl-4">
-    
+
     <div class="col-md-3 offset-3">
       <%= link_to "使用履歴", admin_root_path(equipment_id: @equipment.id), class: "btn btn-warning btn-sm" %>
     </div>
-    
+
     <div class="col-md-3 offset-2">
       <%= link_to '編集する', edit_admin_equipment_path(params[:id]),class:'btn btn-success btn-sm' %>
     </div>

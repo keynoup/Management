@@ -10,5 +10,6 @@ class Equipment < ApplicationRecord
   validates :equipment_name,           presence: true
   validates :management_number,        presence: true
   validates :administrator,            presence: true
+  validates :equipment_status,         presence: true
 
 end

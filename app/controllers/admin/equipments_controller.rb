@@ -24,14 +24,14 @@ class Admin::EquipmentsController < ApplicationController
     if equipment.save
       redirect_to admin_equipment_path(equipment.id)
     else
-      redirect_back fallback_location: root_path
+      render :new 
     end
   end
 
   def update
     equipment = Equipment.find(params[:id])
     equipment.update(equipment_update_params)
-    
+
     #equipmentのeditで備品ステータス変更する場合のみ適応
     begin
       user_application = UserApplication.find(params[:user_application_id])
@@ -39,14 +39,14 @@ class Admin::EquipmentsController < ApplicationController
       redirect_to admin_equipment_path(equipment)
     return
     end
-    
+
     #user_applicationのshowで備品ステータスを変更する場合のみ適応
     user_application = UserApplication.find(params[:user_application_id])
     # 全てのステータスが使用中でなくなればapplication_statusを返却確認済みに変更する
     if user_application.equipments.none? { |eq| eq.during_use? }
       user_application.returned!
     end
-    
+
     redirect_to admin_user_application_path(user_application)
   end
 

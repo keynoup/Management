@@ -4,7 +4,9 @@
     <h2 class="title">会員の方はこちらからログイン</h2></br>
     <div>
       <%= form_with model: @user, url:user_session_path, local: true do |f| %>
-         <div class="form-row">
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <div class="form-row">
           <div class="form-group col-6"><%= f.label :メールアドレス %></div>
           <div class="form-group col-6"><%= f.email_field :email, autofocus: true, autocomplete: "email", size: "40x10" %></div>
         </div>

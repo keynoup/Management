@@ -3,7 +3,8 @@
     <h2 class="title">新規会員登録</h2>
 
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-
+      <%= render 'layouts/error_messages', model: f.object %>
+      
       <table>
         <tr>
           <th class="label">名前</th></br>

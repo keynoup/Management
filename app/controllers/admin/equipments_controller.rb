@@ -19,10 +19,10 @@ class Admin::EquipmentsController < ApplicationController
   end
 
   def create
-    equipment = Equipment.new(equipment_params)
+    @equipment = Equipment.new(equipment_params)
 
-    if equipment.save
-      redirect_to admin_equipment_path(equipment.id)
+    if @equipment.save
+      redirect_to admin_equipment_path(@equipment.id)
     else
       render :new 
     end

@@ -28,3 +28,10 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+
+Some basic Git commands are:
+```
+git status
+git add
+git commit
+```

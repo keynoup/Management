@@ -11,4 +11,5 @@ class UserApplication < ApplicationRecord
   validates :return_date,             presence: true
   validates :location,                presence: true
   validates :application_status,      presence: true
+  
 end

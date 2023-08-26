@@ -5,37 +5,38 @@
 
   <div class="row mt-5 justify-content-center mr-5">
     <%= form_with model: @user_application, url:confirm_user_applications_path, id: 'application-form' do |f| %>
+
       <div class="form-group row">
         <%= f.label :"目的", class: "col-md-3 col-form-label" %>
         <div class="col-md-9">
-          <%= f.text_field :objective, class: "form-control" %>
+          <%= f.text_field :objective, class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="form-group row">
         <%= f.label :"借用期間", class: "col-md-3 col-form-label" %>
         <div class="col-md-4">
-          <%= f.date_field :start_date, class: "form-control" %>
+          <%= f.date_field :start_date, class: "form-control", required: true %>
         </div>
         <div class="col-md-1 d-flex align-items-center justify-content-center">
           <span>〜</span>
         </div>
         <div class="col-md-4">
-          <%= f.date_field :end_date, class: "form-control" %>
+          <%= f.date_field :end_date, class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="form-group row">
         <%= f.label :"返却予定日", class: "col-md-3 col-form-label" %>
         <div class="col-md-9">
-          <%= f.date_field :return_date, class: "form-control" %>
+          <%= f.date_field :return_date, class: "form-control", required: true %>
         </div>
       </div>
 
       <div class="form-group row">
         <%= f.label :"使用場所", class: "col-md-3 col-form-label" %>
         <div class="col-md-9">
-          <%= f.text_field :location, class: "form-control" %>
+          <%= f.text_field :location, class: "form-control", required: true %>
         </div>
       </div>
 
@@ -54,3 +55,4 @@
     <% end %>
   </div>
 </div>
+

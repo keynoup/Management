@@ -5,7 +5,7 @@
   <div class="row col-8 justify-content-end offset-2 mt-5">
       <%= link_to "カートを空にする", all_destroy_cart_equipments_path, method: :delete, class: "btn btn-danger" %>
   </div>
-    
+
   <div class="row justify-content-center">
     <div class="col-8 mt-2">
       <table class="table table-borderless">
@@ -21,8 +21,12 @@
         <tbody>
           <tr>
             <td>
-              <%= image_tag cart_equipment.equipment.image, size: "100x80" %>
-              <%= "　　" %>
+              <% if cart_equipment.equipment.image.attached? %>
+                <%= image_tag cart_equipment.equipment.image, class: "cart-img" %>
+              <% else %>
+                <%= image_tag 'no_image', class: "cart-img" %>
+              <% end %>
+
               <%= cart_equipment.equipment.equipment_name %>
             </td>
             <td class="align-middle text-center"><%= cart_equipment.equipment.management_number %></td>

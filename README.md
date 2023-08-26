@@ -20,7 +20,37 @@
 - 備品の管理状況を変更する際
 - 備品の使用状況を確認する際
 - 備品の故障時の明確な状況や故障場所を記述する際
-## 設計書
+
+## テスト用アカウント
+#管理者側 
+メールアドレス:nakata@ziro.com
+
+パスワード:qqqqqq
+
+管理者用ログインURL: /admin/sign_in
+
+## 使用したgem
+  devise
+  kaminari
+  enum-help
+  dotenv-rails
+
+## 主な機能
+# 管理者側
+- 申請一覧の確認
+- 備品の追加編集
+- ジャンルの追加編集
+- 会員の確認編集
+- 申請ステータス、備品ステータス、会員ステータスの変更
+
+# 会員側
+- 備品の貸借
+- マイページの確認編集
+
+# ER図
+![スクリーンショット 2023-08-25 19 38 45](https://github.com/keynoup/Management/assets/126676009/93619c3e-3d08-4f79-b2f7-db9b358a5b7e)
+# アプリケーション詳細設計
+![スクリーンショット 2023-08-25 19 41 39](https://github.com/keynoup/Management/assets/126676009/d34fd2fc-e99c-4ac0-a400-0085d64f1e17)
 
 ## 開発環境
 - OS：Linux(CentOS)

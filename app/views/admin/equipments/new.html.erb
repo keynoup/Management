@@ -7,32 +7,32 @@
 
         <%= form_with model: @equipment, url: admin_equipments_path do |f| %>
           <%= render 'layouts/error_messages', model: f.object %>
-          
+
           <div class="form-group">
             <%= f.label :"備品名", class: "col-md-3 col-form-label" %>
             <%= f.text_field :equipment_name %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :"管理番号", class: "col-md-3 col-form-label" %>
             <%= f.text_field :management_number %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :"備品画像", class: "col-md-3 col-form-label" %>
             <%= f.file_field :image, accept: "image/*" %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :"ジャンル", class: "col-md-3 col-form-label" %>
             <%= f.collection_select :genre_id, Genre.all, :id, :equipment_genre %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :"管理担当者", class: "col-md-3 col-form-label" %>
             <%= f.text_field :administrator %>
           </div>
-          
+
           <div class="form-group">
             <%= f.label :"備品状態", class: "col-md-3 col-form-label" %>
               <!--使用可能-->
@@ -48,16 +48,16 @@
               <%= f.radio_button :equipment_status, Equipment.equipment_statuses.key(4) %>
               <%= f.label :equipment_status, Equipment.equipment_statuses_i18n[:under_maintenance], value: Equipment.equipment_statuses.key(4) %>
           </div>
-          
+
           <div class="form-group d-flex">
             <%= f.label :"備考", class: "col-md-3 col-form-label" %>
             <%= f.text_area :equipment_remarks, rows: '5', class: "col-md-4 form-control" %>
           </div>
-          
+
           <div class="form-group ml-3">
             <%= f.submit "新規登録", class: "btn-success mx-auto" %>
           </div>
-          
+
         <% end %>
       </div>
     </div>

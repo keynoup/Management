@@ -15,6 +15,7 @@ class Public::UserApplicationsController < ApplicationController
   def create
    # 申請情報の作成と保存
   @user_application = UserApplication.new(user_application_params)
+  
   @cart_equipments = current_user.cart_equipments.all
 
   if @user_application.save
